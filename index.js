@@ -32,9 +32,16 @@ var tens = [
     "eighteen ",
     "nineteen ",
   ];
-  var th = ["", "thousand", "million", "billion", "trillion"];
   
   let num = 12345;
+
+  //<---------------------------------------- Enter a number in the convert function-------------------------->
+  convert(111212345);
+
+
+
+
+  //<----------------------------------------code starts here---------------------------------------------->
   
   function convert(num) {
     if (num < 20) {
@@ -47,7 +54,17 @@ var tens = [
         console.log(convertFourDigit(num));
     } else if(num>=10000 && num<100000){
       console.log(convertFiveDigit(num));
-    } 
+    } else if (num>=100000 && num<1000000) {
+      console.log(convertSixDigit(num));
+    } else if(num>=1000000 && num<10000000){
+      console.log(convertSevenDigit(num));
+    } else if(num>=10000000 && num<100000000){
+      console.log(convertEightDigit(num));
+    } else if(num>=100000000 && num<1000000000){
+      console.log(convertNineDigit(num));
+    } else {
+      console.log("Number is out of bounds please enter a number within 9 digits");
+    }
   }
   
   function convertones(num) {
@@ -83,10 +100,32 @@ var tens = [
   function convertFiveDigit(num){
       num = num.toString();
       return(
-          convertTwoDigit(Number(num[0]+num[1]))+"thousand"+" "+convertThreeDigit(Number(num[1]+num[2]+num[3]))
+          convertTwoDigit(Number(num[0]+num[1]))+"thousand"+" "+convertThreeDigit(Number(num[2]+num[3]+num[4]))
       )
   }
-
+  function convertSixDigit(num){
+      num = num.toString();
+      return(
+          convertones(Number(num[0])) + " "+"lakh"+" "+convertFiveDigit(Number(num[1]+num[2]+num[3]+num[4]+num[5]))
+      )
+  }
+  function convertSevenDigit(num){
+      num = num.toString();
+      return(
+          convertTwoDigit(Number(num[0]+num[1])) + " "+"lakh"+" "+convertFiveDigit(Number(num[2]+num[3]+num[4]+num[5]+num[6]))
+      )
+  }
+  function convertEightDigit(num){
+      num = num.toString();
+      return(
+          convertones(Number(num[0])) + " " + "crore" + " "+convertSevenDigit(Number(num[1]+num[2]+num[3]+num[4]+num[5]+num[6]+num[7]))
+      )
+  }
+  function convertNineDigit(num){
+      num = num.toString();
+      return(
+          convertTwoDigit(Number(num[0]+num[1])) + " " + "crore" + " "+convertSevenDigit(Number(num[2]+num[3]+num[4]+num[5]+num[6]+num[7]+num[8]))
+      )
+  }
   
-  convert(99144);
   
